@@ -1,0 +1,61 @@
+<%- layout('boilerplate') %> 
+
+<section style="margin-top:5em">
+  <div class="container">
+    
+    <div class="text-center">
+      <h1>Edit</h1>
+    </div>
+    <form action="/grounds/<%= ground._id%>/edit?_method=PUT" method="POST"  novalidate class="needs-validation">
+    <div class="mb-3">
+            <label for="name" class="form-label"> name</label>
+            <input type="text" class="form-control" id="name" name="name" value="<%= ground.name%>" required>
+             <div class="valid-feedback">
+      Looks good!
+    </div>
+          </div>
+        <div class="mb-3">
+            <label for="image" class="form-label"> image url</label>
+            <input type="text" class="form-control" id="image" name="image" value="<%= ground.image %>" required>
+             <div class="valid-feedback">
+      Looks good!
+    </div>
+          </div>
+        <div class="mb-3">
+            <label for="price" class="form-label"> price</label>
+            <input type="number" class="form-control" id="price" name="price" value="<%= ground.price%>" required>
+             <div class="valid-feedback">
+      Looks good!
+    </div>
+          </div>
+        <div class="mb-3">
+            <label for="location" class="form-label"> location</label>
+            <input type="text" class="form-control" id="location" name="location" value="<%=ground.location%>" required>
+             <div class="valid-feedback">
+      Looks good!
+    </div>
+          </div>
+        <div class="mb-3">
+            <label for="category" class="form-label" > Category</label>
+            <select name="category" class="form" id="category" value="<%= ground.category%>" required>
+                 <div class="valid-feedback">
+      Looks good!
+    </div>
+                <option value="Football">Football</option>
+                <option value="Cricket">Cricket</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label"> description</label>
+            <textarea class="form-control" id="description" rows="3" name="description"  required>
+                <%= ground.description%>
+            </textarea>
+             <div class="valid-feedback">
+      Looks good!
+    </div>
+          </div>
+            <button type="submit" class="btn btn-success mb-3" style="width: 100%;" >Save changes</button>
+          </form>
+          <a href="/grounds/<%= ground._id %>" class="btn btn-danger mb-3" style="width: 100%">cancel</a>
+    </div>
+</section>

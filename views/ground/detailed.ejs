@@ -1,0 +1,87 @@
+<%- layout('boilerplate') %>
+<div class="container mt-5 mb-5">
+  <div class="row">
+      <div class="col-md-6 ">
+        <div class="card" >
+            <img src="<%= ground.image  %> " class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= ground.name%></h5>
+              <p class="card-text"><%= ground.description%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-muted"><%= ground.location%></li>
+              <li class="list-group-item">₹<%= ground.price%> /hour</li>
+              <li class="list-group-item"><%= ground.category%>&nbsp;&nbsp;Court</li>
+            </ul>
+            <div class="card-body">
+              <a href="/grounds/<%= ground._id%>/edit" class="card-link btn btn-primary">Edit</a>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">delete</button>
+              
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Confirmation !!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure , you want to delete <%= ground.name%> 
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+              <form action="/grounds/<%= ground._id %>?_method=DELETE" method="post" class="d-inline ">
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <div class="container">
+
+          <h1 class="text-center">Add a rivew</h1>
+          <div class="card p-4 mb-4">
+            <form action="/grounds/<%= ground._id %>/new" method="post">
+              <div class="mb-3">
+                <label for="customRange2" class="form-label">Example range</label>
+                <input type="range" class="form-range" min="1" max="5" id="customRange2" name="star" required>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label"> Review</label>
+                <textarea class="form-control" id="description" rows="3"  name="review" required></textarea>
+                <div class="my-3">
+                <button class="btn btn-success" style="width: 100%;">Add a rivew</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <% for(let p of pop.reviews){ %> 
+            <div class="card p-4 mb-3">
+              <div class="card-title">
+                <h5>Review  <%= p.star %>⭐</h5>  
+              </div>
+              <div class="card-text">
+                <h5><%= p.review %> </h5>
+              </div>
+              <div class="">
+                <form action="/grounds/<%= ground._id %>/review/<%=p.id%>?_method=DELETE" method="post">
+              <button href="" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+            <% } %> 
+            
+          </div>
+      </div>
+
+
+  </div>
+</div>
