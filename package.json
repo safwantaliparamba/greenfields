@@ -1,5 +1,5 @@
 {
-  "name": "instagram-clone",
+  "name": "greenfields",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,12 +9,19 @@
   "author": "safwan taliparamba",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
     "ejs": "^3.1.6",
     "ejs-mate": "^3.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "joi": "^17.5.0",
     "method-override": "^3.0.0",
     "mongoose": "^6.0.14",
+    "passport": "^0.5.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.1.0",
     "path": "^0.12.7"
   }
 }

@@ -6,36 +6,76 @@
     <div class="text-center">
       <h1>Add new TURF</h1>
     </div>
-    <form action="/grounds/new" method="POST">
+    <form action="/grounds/new" method="POST" novalidate class="validated-form">
     <div class="mb-3">
             <label for="name" class="form-label"> name</label>
-            <input type="text" class="form-control" id="name" name="name" >
+            <input type="text" class="form-control" id="name" name="name"  required>
+            <div class="valid-feedback">
+      Looks good!
+    </div>
           </div>
         <div class="mb-3">
             <label for="image" class="form-label"> image url</label>
-            <input type="text" class="form-control" id="image" name="image" >
+            <input type="text" class="form-control" id="image" name="image"  required>
+            <div class="valid-feedback">
+      Looks good!
+    </div>
           </div>
         <div class="mb-3">
             <label for="price" class="form-label"> price</label>
-            <input type="number" class="form-control" id="price" name="price" >
+            <input type="number" class="form-control" id="price" name="price"  required>
+            <div class="valid-feedback">
+      Looks good!
+    </div>
           </div>
         <div class="mb-3">
             <label for="location" class="form-label"> location</label>
-            <input type="text" class="form-control" id="location" name="location" >
+            <input type="text" class="form-control" id="location" name="location"  required>
+            <div class="valid-feedback">
+      Looks good!
+    </div>
           </div>
         <div class="mb-3">
             <label for="category" class="form-label"> Category</label>
-            <select name="category" class="form" id="category">
+            <select name="category" class="form" id="category" required>
                 <option value="Football">Football</option>
                 <option value="Cricket">Cricket</option>
             </select>
+            <div class="valid-feedback">
+      Looks good!
+    </div>
           </div>
           <div class="mb-3">
             <label for="description" class="form-label"> description</label>
-            <textarea class="form-control" id="description" rows="3" name="description" ></textarea>
+            <textarea class="form-control" id="description" rows="3" name="description"  required></textarea>
+            <div class="valid-feedback">
+      Looks good!
+    </div>
           </div>
             <button type="submit" class="btn btn-success mb-3" style="width: 100%;" >Create</button>
           </form>
           <a href="/grounds" class="btn btn-danger mb-3" style="width: 100%">cancel</a>
     </div>
 </section>
+
+<script>
+  (function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>

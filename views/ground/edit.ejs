@@ -6,7 +6,7 @@
     <div class="text-center">
       <h1>Edit</h1>
     </div>
-    <form action="/grounds/<%= ground._id%>/edit?_method=PUT" method="POST"  novalidate class="needs-validation">
+    <form action="/grounds/<%= ground._id%>/edit?_method=PUT" method="POST"  novalidate class="validated-form">
     <div class="mb-3">
             <label for="name" class="form-label"> name</label>
             <input type="text" class="form-control" id="name" name="name" value="<%= ground.name%>" required>
@@ -59,3 +59,24 @@
           <a href="/grounds/<%= ground._id %>" class="btn btn-danger mb-3" style="width: 100%">cancel</a>
     </div>
 </section>
+<script>
+  (function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
