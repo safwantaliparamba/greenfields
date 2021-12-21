@@ -2,7 +2,8 @@
 <div class="container mt-5 mb-5">
   <h1 class="text-center m-5"><%= ground.name.toUpperCase()%></h1>
   <div class="row">
-      <div class="col-md-6 ">
+
+    <div class="col-md-6">
         <div class="card" >
             <img src="<%= ground.image  %> " class="card-img-top" alt="...">
             <div class="card-body">
@@ -14,6 +15,9 @@
               <li class="list-group-item ">Created by  <%= ground.author.username%></li>
               <li class="list-group-item">₹<%= ground.price%> /hour</li>
               <li class="list-group-item"><%= ground.category%>&nbsp;&nbsp;Court</li>
+              <% if (ground.number) { %>
+                <a href="tel:+91<%= ground.number %>" class="btn btn-sm btn-primary m-3">Contact us</a>
+              <% } %>
             </ul>
             
             <% if(currentUser && ground.author._id.equals(currentUser._id)) { %>
@@ -53,7 +57,7 @@
         <div class="">
 <% if (currentUser) { %>
  
-  <h1 class="text-center">Add a rivew</h1>
+  <h1 class="text-center">leave a review</h1>
   <div class="card p-4 mb-4">
     <form action="/grounds/<%= ground._id %>/new" method="post" class="validated-form" novalidate>
       <div class="mb-3">
@@ -64,7 +68,7 @@
         <label for="description" class="form-label"> Review</label>
         <textarea class="form-control" id="description" rows="3"  name="review" required></textarea>
         <div class="my-3">
-          <button class="btn btn-success" style="width: 100%;">Add a rivew</button>
+          <button class="btn btn-success" style="width: 100%;">leave a review</button>
         </div>
       </div>
     </form>
@@ -78,12 +82,12 @@
             <% for(let p of reviews.reviews){ %> 
               <div class="card p-4 mb-3">
                 <div class="card-title">
-                  <h5>Rating: <%= p.rating %></h5>  
+                  <h5>rating: <%= p.rating %></h5>  
                 </div>
                 <div class="card-text">
-                  <h5><%= p.review %> </h5>
+                  <h5>review  :<%= p.review %> </h5>
                 </div>
-                <div class="card-sub-title text-muted">By <%= p.author.username %></div>
+                <div class="card-sub-title text-muted mb-3">by @<%= p.author.username %></div>
                 
             <% if(currentUser && p.author.equals(currentUser._id)) { %>
 

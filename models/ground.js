@@ -17,6 +17,9 @@ const groundSchema = new mongoose.Schema({
     location:{
         type:String,
     },
+    number:{
+        type:Number,
+    },
     description:{
         type:String,
     },

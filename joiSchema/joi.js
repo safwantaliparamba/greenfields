@@ -20,6 +20,7 @@ module.exports.groundValidation = (req,res,next) => {
     const groundSchema = joi.object({
         name:joi.string().required(),
         location:joi.string().required(),
+        number:joi.number().required(),
         price:joi.number().required(),
         image:joi.string().required(),
         description:joi.string().required(),

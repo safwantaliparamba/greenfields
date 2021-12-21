@@ -30,3 +30,10 @@ module.exports.isReviewAuthor = async(req , res , next)=>{
         }
         next()
 }
+
+module.exports.ifLoggedIn = (req,res,next) => {
+    if(req.user){
+       return res.redirect('/grounds')
+    }
+    next();
+}
