@@ -8,11 +8,15 @@
   <% for(let ground of grounds){ %> 
     
   <div class="card mx-auto p-2 mb-5 " style="max-width: 20rem;">
-    <img src="<%= ground.image %>" class="card-img-top" alt="<%= ground.name %>">
+   
+    <img src="<%=ground.image.url %>" class="card-img-top" alt="<%= ground.name %>">
+    
     <div class="card-body">
       <h5 class="card-title"><%= ground.name.toUpperCase() %></h5>
       <p class="card-text"><%= ground.description %></p>
-      <p class="card-text">Created by  <%= ground.author.username %></p>
+      <p class="card-text">
+        Created by  @<%= ground.author.username %>
+      </p>
       <p class="card-text text-muted">$<%= ground.price %>/hour</p>
       <p class="card-text">
         <small class="text-muted">

@@ -22,9 +22,9 @@ module.exports.groundValidation = (req,res,next) => {
         location:joi.string().required(),
         number:joi.number().required(),
         price:joi.number().required(),
-        image:joi.string().required(),
         description:joi.string().required(),
-        category:joi.string().required()
+        category:joi.string().required(),
+        image:joi.string()
     })
     const result = groundSchema.validate(req.body);
     if(result.error){

@@ -5,6 +5,9 @@
         <div class="alert alert-danger" role="alert">
             <div class="alert-body">
                 <h3><%= message %></h3>
+                <% if(process.env.NODE_ENV !== 'production'){ %>
+                <p><%= stack %></p>
+                <% }%>
             </div>
         </div>
     </div>

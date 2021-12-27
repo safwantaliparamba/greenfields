@@ -10,10 +10,12 @@ const groundSchema = new mongoose.Schema({
         type:Number,
         required:true,
     },
-    image:{
-        type:String,
-        required:true
-    },
+    image:
+        {
+        url:String,
+        filename:String,
+        }
+    ,
     location:{
         type:String,
     },

@@ -15,7 +15,7 @@ module.exports.isAuthor = async(req , res , next)=>{
     const {id} = req.params
     const ground = await Ground.findById(id)
     if(!ground.author.equals(req.user._id)){
-        req.flash('error','You dont have permission!!')
+        req.flash('error','You dont have permission to do that!!')
         return res.redirect(`/grounds/${id}`)
     }
     next()
@@ -25,7 +25,7 @@ module.exports.isReviewAuthor = async(req , res , next)=>{
         const {id , reviewid} = req.params
         const review = await Review.findById(reviewid)
         if(!review.author.equals(req.user._id)){
-            req.flash('error','You dont have permission!!')
+            req.flash('error','You dont have permission to do that!!')
             return res.redirect(`/grounds/${id}`)
         }
         next()

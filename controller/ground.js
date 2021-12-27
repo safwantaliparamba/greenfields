@@ -1,8 +1,8 @@
 const Ground = require('../models/ground');
-const Review = require('../models/review')
+const Review = require('../models/review');
+const cloudinary = require('../cloudinary/index');
 
 module.exports.index = async (req , res ,next) =>{
-    req.flash('success' , 'successfully created')
     const grounds =await  Ground.find({}).populate('author')
     res.render('ground/view' , {grounds})
 }
@@ -12,8 +12,11 @@ module.exports.renderNewGround =  (req , res) =>{
 }
 module.exports.createNewGround = async (req , res ,next) =>{
     const newground =await new Ground(req.body)
+    // newground.images = req.files.map(f => ({url: f.path,filename: f.filename}))
+    newground.image = {url:req.file.path,filename:req.file.filename}
     newground.author = req.user._id
     await  newground.save()
+    console.log(req.file)
     req.flash('success','succesfully created new ground')
     res.redirect(`/grounds/${newground._id}`)
     

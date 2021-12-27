@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
+
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -14,6 +18,10 @@ const flash = require('connect-flash')
 const User = require('./models/user')
 const passport = require('passport')
 const Localstrategy = require('passport-local')
+// const mongoSanitize = require('mongo-sanitize')
+// const multer = require('multer')
+// const { storage } = require('./cloudinary/index')
+// const upload = multer({storage})
 
 
 // imported routes
@@ -26,6 +34,7 @@ app.set('views' , path.join(__dirname, 'views'))
 app.engine('ejs' , engine)
 
 // middlewares
+// app.use(mongoSanitize)
 app.use(express.static(path.join(__dirname, 'assets')))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
@@ -42,6 +51,7 @@ app.use(session({
         maxAge:845000
     }
 }))
+
 
 // passport middlewares
 app.use(passport.initialize());

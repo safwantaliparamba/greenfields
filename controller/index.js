@@ -33,7 +33,7 @@ module.exports.loginUser = async(req,res)=>{
     try{
     const redirectUrl = req.session.returnTo || '/grounds'
     delete req.session.returnTo
-    req.flash('success','welcome back')
+    req.flash('success',`welcome back ${req.user.username}`)
     res.redirect(redirectUrl)
     }
     catch(error) {
@@ -43,7 +43,7 @@ module.exports.loginUser = async(req,res)=>{
 }
 
 module.exports.logout = (req,res)=>{
+    req.flash('success',`succesfully logged out ${req.user.username}`)
     req.logOut()
-    req.flash('success','successfully logged out')
     res.redirect('/grounds')
 }

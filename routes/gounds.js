@@ -8,14 +8,17 @@ const ExpressError = require('../err/err')
 const {reviewValidation , groundValidation} = require('../joiSchema/joi')
 const passport = require('passport');
 const {isLoggedIn,isAuthor,isReviewAuthor} = require('../middleware');
-const grounds = require('../controller/ground')
+const grounds = require('../controller/ground');
+const multer = require('multer')
+const { storage } = require('../cloudinary/index')
+const upload = multer({storage})
 
 router.get('/' ,catchAsync(grounds.index))
 
 
 router.route('/new')
     .get(isLoggedIn,grounds.renderNewGround)
-    .post(isLoggedIn,groundValidation,catchAsync(grounds.createNewGround))
+    .post(isLoggedIn,upload.single('image'),groundValidation,catchAsync(grounds.createNewGround))
 
 router.route('/:id')
     .get(catchAsync(grounds.renderGround))
@@ -23,7 +26,7 @@ router.route('/:id')
 
 router.route('/:id/edit')
     .get(isLoggedIn,isAuthor, catchAsync(grounds.renderEdit))
-    .put(isLoggedIn,isAuthor, catchAsync(grounds.updateGround))
+    .put(isLoggedIn,isAuthor,catchAsync(grounds.updateGround))
 
 // review routes
 

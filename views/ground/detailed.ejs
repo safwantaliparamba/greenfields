@@ -1,11 +1,14 @@
 <%- layout('boilerplate') %>
+<link rel="stylesheet" href="/css/star.css" type="text/css">
+
+
 <div class="container mt-5 mb-5">
   <h1 class="text-center m-5"><%= ground.name.toUpperCase()%></h1>
   <div class="row">
 
     <div class="col-md-6">
         <div class="card" >
-            <img src="<%= ground.image  %> " class="card-img-top" alt="...">
+            <img src="<%= ground.image.url%>" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><%= ground.name%></h5>
               <p class="card-text"><%= ground.description%></p>
@@ -57,12 +60,30 @@
         <div class="">
 <% if (currentUser) { %>
  
-  <h1 class="text-center">leave a review</h1>
+  <h3 class="text-center">leave a review</h3>
   <div class="card p-4 mb-4">
     <form action="/grounds/<%= ground._id %>/new" method="post" class="validated-form" novalidate>
       <div class="mb-3">
-        <label for="customRange2" class="form-label">Rating</label>
-        <input type="range" class="form-range" min="1" max="5" id="customRange2" name="rating" required>
+        <!-- <label for="customRange2" class="form-label">Rating</label>
+        <input type="range" class="form-range" min="1" max="5" id="customRange2" name="rating" required> -->
+
+        <fieldset class="starability-basic">
+          <h6>Rating</h6>
+          <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+          <input type="radio" id="second-rate1" name="rating" value="1" />
+          <label for="second-rate1" title="Terrible">1 star</label>
+          <input type="radio" id="second-rate2" name="rating" value="2" />
+          <label for="second-rate2" title="Not good">2 stars</label>
+          <input type="radio" id="second-rate3" name="rating" value="3" />
+          <label for="second-rate3" title="Average">3 stars</label>
+          <input type="radio" id="second-rate4" name="rating" value="4" />
+          <label for="second-rate4" title="Very good">4 stars</label>
+          <input type="radio" id="second-rate5" name="rating" value="5" />
+          <label for="second-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+
+
+
       </div>
       <div class="mb-3">
         <label for="description" class="form-label"> Review</label>
@@ -81,11 +102,15 @@
             
             <% for(let p of reviews.reviews){ %> 
               <div class="card p-4 mb-3">
+
                 <div class="card-title">
-                  <h5>rating: <%= p.rating %></h5>  
+                  <p class="starability-result" data-rating="<%= p.rating %>">
+                    Rated: <%= p.rating %> stars
+                  </p>
+
                 </div>
                 <div class="card-text">
-                  <h5>review  :<%= p.review %> </h5>
+                  <h5><%= p.review %> </h5>
                 </div>
                 <div class="card-sub-title text-muted mb-3">by @<%= p.author.username %></div>
                 
@@ -134,7 +159,7 @@
   var forms = document.querySelectorAll('.validated-form')
 
   // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
+  Array.from(forms)
     .forEach(function (form) {
       form.addEventListener('submit', function (event) {
         if (!form.checkValidity()) {

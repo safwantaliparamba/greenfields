@@ -6,7 +6,7 @@
     <div class="text-center">
       <h1>Add new TURF</h1>
     </div>
-    <form action="/grounds/new" method="POST" novalidate class="validated-form">
+    <form action="/grounds/new" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
     <div class="mb-3">
             <label for="name" class="form-label"> name</label>
             <input type="text" class="form-control" id="name" name="name"  required>
@@ -14,20 +14,27 @@
       Looks good!
     </div>
           </div>
-        <div class="mb-3">
-            <label for="image" class="form-label"> image url</label>
-            <input type="text" class="form-control" id="image" name="image"  required>
-            <div class="valid-feedback">
+
+    <div class="mb-3">
+      <label for="formFileLg" class="form-label">images</label>
+    <input class="form-control " id="formFileLg" type="file" name="image"  required>
+      <div class="valid-feedback">
       Looks good!
+      </div>
     </div>
-          </div>
-        <div class="mb-3">
-            <label for="price" class="form-label"> price</label>
-            <input type="number" class="form-control" id="price" name="price"  required>
-            <div class="valid-feedback">
-      Looks good!
+
+
+    <label for="price" class="form-label">price</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">₹</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" id="price">
+      <span class="input-group-text">.00</span>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
     </div>
-          </div>
+
+
         <div class="mb-3">
             <label for="location" class="form-label"> location</label>
             <input type="text" class="form-control" id="location" name="location"  required>
